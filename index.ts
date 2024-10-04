@@ -12,7 +12,7 @@ const [cert, key] = await Promise.all([
 
 const server = https.createServer({ key, cert }, app);
 
-server.listen(8001, () => console.log("Server Avviato sulla porta " + 8001));
+server.listen(process.env.PORT, () => console.log("Server Avviato sulla porta " + process.env.PORT));
 
 app.use("/", (req : Request, res : Response, next : NextFunction) => {
     console.log(`>--> ${req.method} ${req.url}`)
