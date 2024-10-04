@@ -1,6 +1,7 @@
 import https from "https";
 import {ReadFileAsync} from "./tools/tools.js"
 import express, { Express } from "express";
+import {Request, Response, NextFunction} from "express"
 
 const app : Express = express();
 
@@ -13,3 +14,7 @@ const server = https.createServer({ key, cert }, app);
 
 server.listen(process.env.PORT, () => console.log("Server Avviato"));
 
+app.use("/", (req : Request, res : Response, next : NextFunction) => {
+    console.log(`>--> ${req.method} ${req.url}`)
+    next();
+})
