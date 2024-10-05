@@ -11,10 +11,13 @@ const [cert, key] = await Promise.all([
 ]);
 
 const server = https.createServer({ key, cert }, app);
-
-server.listen(process.env.PORT, () => console.log("Server Avviato sulla porta " + process.env.PORT));
+let port:any = process.env.PORT ? parseInt(process.env.PORT) : 3000
+var host = process.env.PORT ? "0.0.0.0" : "localhost"
+server.listen(port, host, () => console.log("Server Avviato sulla porta " + 3000));
 
 app.use("/", (req : Request, res : Response, next : NextFunction) => {
     console.log(`>--> ${req.method} ${req.url}`)
+    console.log("ENTRATO")
+    res.send("SUS")
     next();
 })
