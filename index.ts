@@ -12,7 +12,7 @@ const [cert, key] = await Promise.all([
 
 const server = https.createServer({ key, cert }, app);
 let port:any = process.env.PORT ? parseInt(process.env.PORT) : 3000
-var host = process.env.PORT ? "https://crimsonservice.onrender.com" : "localhost"
+var host = process.env.PORT ? "0.0.0.0" : "localhost"
 server.listen(port, host, () => console.log("Server Avviato sulla porta " + port));
 
 app.use("/", (req : Request, res : Response, next : NextFunction) => {
