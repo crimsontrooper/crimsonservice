@@ -1,4 +1,5 @@
 import https from "https";
+import http from "http"
 import {ReadFileAsync} from "./tools/tools.js"
 import express, { Express } from "express";
 import {Request, Response, NextFunction} from "express"
@@ -10,7 +11,8 @@ const [cert, key] = await Promise.all([
     ReadFileAsync("./keys/private_key.pem")
 ]);
 
-const server = https.createServer({ key, cert }, app);
+// const server = https.createServer({ key, cert }, app);
+const server = http.createServer(app);
 let port:any = process.env.PORT ? parseInt(process.env.PORT) : 3000
 var host = process.env.PORT ? "0.0.0.0" : "localhost"
 server.listen(port, host, () => console.log("Server Avviato sulla porta " + port));
