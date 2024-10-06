@@ -5,6 +5,7 @@ import express, { Express } from "express";
 import {Request, Response, NextFunction} from "express"
 
 const app : Express = express();
+app.use(express.json())
 
 const [cert, key] = await Promise.all([
     ReadFileAsync("./keys/certificate.crt"),
@@ -17,7 +18,7 @@ let port = process.env.PORT ? parseInt(process.env.PORT) : 3000
 var host = process.env.PORT ? "0.0.0.0" : "localhost"
 server.listen(port, host, () => console.log("Server Avviato sulla porta " + port));
 
-app.use("/", (req : Request, res : Response, next : NextFunction) => {
+app.use("/upload", (req : Request, res : Response, next : NextFunction) => {
     console.log(`>--> ${req.method} ${req.url}`)
     console.log("ENTRATO")
     console.log(JSON.stringify(req.body.file_key))
