@@ -20,9 +20,7 @@ server.listen(port, host, () => console.log("Server Avviato sulla porta " + port
 
 app.use("/upload", (req : Request, res : Response, next : NextFunction) => {
     console.log(`>--> ${req.method} ${req.url}`)
-    console.log("ENTRATO")
-    console.log(JSON.stringify(req.body.file_key))
-    console.log(req.body.file_key)
+    console.log(req.body)
     res.send(req.body.file_key)
     next();
 })
